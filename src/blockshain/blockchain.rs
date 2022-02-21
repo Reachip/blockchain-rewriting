@@ -1,6 +1,7 @@
 use crate::blockshain::block::Block;
 use crate::blockshain::node::Node;
 
+#[derive(Clone)]
 pub struct BlockChain {
     blocks: Vec<Block>,
     nodes: Vec<Node>,

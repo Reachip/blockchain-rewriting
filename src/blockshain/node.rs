@@ -3,6 +3,7 @@ use crate::network::receiver::PhysicalNodeReceiver;
 use crate::network::transmitter::PhysicalNodeTransmitter;
 use uuid::Uuid;
 
+#[derive(Clone)]
 pub struct Node {
     pub(crate) id: Uuid,
 }
