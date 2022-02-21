@@ -1,3 +1,6 @@
+mod network;
+mod blockshain;
+
 fn main() {
-    println!("Hello, world!");
+    println!("Blockshain !");
 }
