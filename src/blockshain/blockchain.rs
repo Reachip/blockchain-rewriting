@@ -2,7 +2,6 @@ use crate::blockshain::block::Block;
 use crate::blockshain::node::Node;
 
 pub struct BlockChain {
-    // node_path: Path
     blocks: Vec<Block>,
     nodes: Vec<Node>,
 }
