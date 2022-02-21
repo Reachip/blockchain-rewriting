@@ -23,3 +23,25 @@ impl BlockChain {
         &self.nodes.push(node);
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::blockshain::block::Block;
+    use crate::blockshain::blockchain::BlockChain;
+
+    #[test]
+    fn test_add_node() {
+        let mut blockchain = BlockChain::new();
+
+        blockchain.add_block(Block::new());
+        blockchain.add_block(Block::new());
+
+        assert_eq!(blockchain.blocks.len(), 2);
+    }
+
+    #[test]
+    fn test_add_block() {
+        let mut blockchain = BlockChain::new();
+        assert_eq!(blockchain.nodes.len(), 0);
+    }
+}
