@@ -1,7 +1,7 @@
-use std::os::unix::net::{UnixListener, UnixStream};
 use crate::blockshain::node::Node;
 use crate::network::receiver::UnixSocketListener;
 use crate::network::transmitter::UnixSocketTransmitter;
+use std::os::unix::net::{UnixListener, UnixStream};
 
 pub struct PhysicalNode<'a> {
     node: &'a Node,

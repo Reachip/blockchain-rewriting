@@ -1,5 +1,7 @@
 pub(crate) struct Block {}
 
 impl Block {
-    fn new() {}
+    pub fn new() -> Self {
+        Self {}
+    }
 }

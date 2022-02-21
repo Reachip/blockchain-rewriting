@@ -1,7 +1,7 @@
-use std::io;
-use std::os::unix::net::UnixStream;
 use crate::network::message::BlockChainMessage;
 use crate::network::physical_node::PhysicalNode;
+use std::io;
+use std::os::unix::net::UnixStream;
 
 pub struct UnixSocketTransmitter;
 
@@ -13,8 +13,7 @@ impl PhysicalNodeTransmitter {
     pub(crate) fn new(transmitter: UnixStream) -> Self {
         Self { transmitter }
     }
-
-    fn send(to: &PhysicalNode, message: BlockChainMessage) -> io::Result<()> {
+    fn transmit(to: &PhysicalNode, message: BlockChainMessage) -> io::Result<()> {
         Ok(()) // TODO
     }
 }
@@ -24,4 +23,3 @@ impl UnixSocketTransmitter {
         Ok(UnixStream::connect(socket_path)?)
     }
 }
-

@@ -1,7 +1,7 @@
-use uuid::Uuid;
+use crate::network::physical_node::PhysicalNode;
 use crate::network::receiver::PhysicalNodeReceiver;
 use crate::network::transmitter::PhysicalNodeTransmitter;
-use crate::network::physical_node::PhysicalNode;
+use uuid::Uuid;
 
 pub struct Node {
     pub(crate) id: Uuid,
