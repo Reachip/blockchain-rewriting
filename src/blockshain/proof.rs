@@ -28,6 +28,6 @@ impl Proof for ProofOfWork {
     }
 
     fn finish(hash: &impl BlockHash) -> bool {
-        todo!()
+        hash.as_string().starts_with("00")
     }
 }
