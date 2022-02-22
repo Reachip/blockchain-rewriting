@@ -1,5 +1,5 @@
-mod block;
-mod block_hash;
+pub(crate) mod block;
+pub(crate) mod block_hash;
 mod blockchain;
 pub(crate) mod node;
-mod proof;
+pub(crate) mod proof;

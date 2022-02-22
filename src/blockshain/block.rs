@@ -33,12 +33,11 @@ impl Block {
     }
 
     pub fn new_with_proof(
-        author: Uuid,
+        signature: String,
         data: String,
         previous_block_hash: SHA256BlockHash,
         proof: String,
     ) -> Self {
-        let signature = author.to_string();
         let proof_of_work = proof;
 
         Self {
