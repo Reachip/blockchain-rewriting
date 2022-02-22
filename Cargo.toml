@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 uuid = { version = "0.8", features = ["serde", "v4"] }
+sha256 = "1.0.3"
