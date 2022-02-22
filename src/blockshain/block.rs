@@ -2,7 +2,7 @@ use crate::blockshain::block_hash::BlockHash;
 use crate::blockshain::block_hash::SHA256BlockHash;
 use uuid::Uuid;
 
-#[derive(Clone)]
+#[derive(Clone, Default, Debug)]
 pub(crate) struct Block {
     pub(crate) previous_block_hash: SHA256BlockHash,
     pub data: String,

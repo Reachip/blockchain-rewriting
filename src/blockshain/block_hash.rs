@@ -8,7 +8,7 @@ where
     fn get<T: ToString + Sized>(&self) -> Box<dyn ToString>;
 }
 
-#[derive(Default, Clone)]
+#[derive(Default, Clone, Debug)]
 pub struct SHA256BlockHash {
     hash: String,
 }

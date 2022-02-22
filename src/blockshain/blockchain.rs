@@ -1,14 +1,14 @@
 use crate::blockshain::block::Block;
 use crate::blockshain::node::Node;
 
-#[derive(Clone)]
+#[derive(Clone, Default, Debug)]
 pub struct BlockChain {
     blocks: Vec<Block>,
     nodes: Vec<Node>,
 }
 
 impl BlockChain {
-    fn new() -> Self {
+    pub(crate) fn new() -> Self {
         Self {
             blocks: vec![],
             nodes: vec![],
