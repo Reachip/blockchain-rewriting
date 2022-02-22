@@ -1,13 +1,13 @@
-use uuid::Uuid;
 use crate::blockshain::block_hash::BlockHash;
 use crate::blockshain::block_hash::SHA256BlockHash;
+use uuid::Uuid;
 
 pub(crate) struct Block {
-    previous_block_hash: SHA256BlockHash,
+    pub(crate) previous_block_hash: SHA256BlockHash,
     pub data: String,
     pub signature: String,
     pub proof_of_work: String,
-    hash: SHA256BlockHash,
+    pub(crate) hash: SHA256BlockHash,
 }
 
 impl PartialEq for Block {
@@ -15,6 +15,8 @@ impl PartialEq for Block {
         self.hash.as_string() == other.hash.as_string()
     }
 }
+
+impl Eq for Block {}
 
 impl Block {
     pub fn new(author: Uuid, data: String, previous_block: Block) -> Self {
@@ -26,7 +28,25 @@ impl Block {
             data: data.clone(),
             signature: signature.clone(),
             proof_of_work: proof_of_work.clone(),
-            hash: SHA256BlockHash::from(data, signature, proof_of_work)
+            hash: SHA256BlockHash::from(data, signature, proof_of_work),
+        }
+    }
+
+    pub fn new_with_proof(
+        author: Uuid,
+        data: String,
+        previous_block_hash: SHA256BlockHash,
+        proof: String,
+    ) -> Self {
+        let signature = author.to_string();
+        let proof_of_work = proof;
+
+        Self {
+            previous_block_hash,
+            data: data.clone(),
+            signature: signature.clone(),
+            proof_of_work: proof_of_work.clone(),
+            hash: SHA256BlockHash::from(data, signature, proof_of_work),
         }
     }
 
@@ -36,7 +56,7 @@ impl Block {
             data: String::default(),
             signature: String::default(),
             proof_of_work: String::default(),
-            hash: SHA256BlockHash::default()
+            hash: SHA256BlockHash::default(),
         }
     }
 }
