@@ -1,37 +1,34 @@
 use crate::blockshain::block::Block;
 
-
-pub trait BlockHash {
+pub trait BlockHash
+where
+    Self: Sized,
+{
     fn as_string(&self) -> String;
-    fn get<T: ToString>(&self) -> Box<dyn ToString>;
+    fn get<T: ToString + Sized>(&self) -> Box<dyn ToString>;
 }
 
-#[derive(Default)]
+#[derive(Default, Clone)]
 pub struct SHA256BlockHash {
-    hash: String
+    hash: String,
 }
 
-
-impl SHA256BlockHash  {
+impl SHA256BlockHash {
     pub(crate) fn new(block: Block) -> Self {
         let hash = sha256::digest(block.data + &*block.signature + &*block.proof_of_work);
 
-        Self {
-            hash
-        }
+        Self { hash }
     }
 
     pub(crate) fn from(data: String, signature: String, proof_of_work: String) -> Self {
         let hash = sha256::digest(data + &*signature + &*proof_of_work);
 
-        Self {
-            hash
-        }
+        Self { hash }
     }
 }
 
 impl BlockHash for SHA256BlockHash {
-    fn as_string(&self) ->  String {
+    fn as_string(&self) -> String {
         (&self.get::<String>()).to_string()
     }
 
@@ -40,12 +37,11 @@ impl BlockHash for SHA256BlockHash {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
-    use uuid::Uuid;
     use crate::blockshain::block::Block;
     use crate::blockshain::block_hash::{BlockHash, SHA256BlockHash};
+    use uuid::Uuid;
 
     #[test]
     fn test_hash_genesis_block() {
@@ -55,6 +51,10 @@ mod tests {
     #[test]
     fn test_hash_normal_block() {
         let previous_block = Block::genesis();
-        let block_hash = SHA256BlockHash::new(Block::new(Uuid::default(), "data".to_string(), previous_block));
+        let block_hash = SHA256BlockHash::new(Block::new(
+            Uuid::default(),
+            "data".to_string(),
+            previous_block,
+        ));
     }
 }
