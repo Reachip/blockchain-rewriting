@@ -1,7 +1,6 @@
 use crate::blockshain::block::Block;
 use crate::blockshain::node::Node;
 
-#[derive(Clone)]
 pub struct BlockChain {
     blocks: Vec<Block>,
     nodes: Vec<Node>,
@@ -33,8 +32,8 @@ mod tests {
     fn test_add_node() {
         let mut blockchain = BlockChain::new();
 
-        blockchain.add_block(Block::new());
-        blockchain.add_block(Block::new());
+        blockchain.add_block(Block::genesis());
+        blockchain.add_block(Block::genesis());
 
         assert_eq!(blockchain.blocks.len(), 2);
     }
